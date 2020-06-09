@@ -27,22 +27,22 @@
 <tbody>
 [#begin RESULT#]
 <tr>
- <td
-  >
-  <b>
-   [#TITLE#]
-  </a></b>
+ <td>
+  <b>[#TITLE#]</b>
+  [#if STATE==1#]
+   <span class="label label-success">On</span> 
+  [#else#]
+   <span class="label label-danger">Off</span> 
+  [#endif#] 
  </td>
- <td
-   >
+ <td>
   [#if IP!=""#]
    [#IP#]
   [#else#]
    &nbsp;
   [#endif#]
  </td>
- <td
-   >
+ <td>
   [#if MAC!=""#]
    [#MAC#]
   [#else#]
@@ -53,7 +53,8 @@
   <div>
   [#if "<#ACTION#>"=="admin"#]
    <a href="?data_source=<#DATA_SOURCE#>&view_mode=edit_hisense_device&id=[#ID#]" class="btn btn-default" title="Edit"><i class="glyphicon glyphicon-pencil"></i></a>
-    <a href="?data_source=<#DATA_SOURCE#>&view_mode=delete_hisense_device&id=[#ID#]" onClick="return confirm('Are you sure? Please confirm.')" class="btn btn-default" title="Delete"><i class="glyphicon glyphicon-remove"></i></a>
+   <a href="?data_source=<#DATA_SOURCE#>&view_mode=edit_hisense_device&id=[#ID#]&tab=data" class="btn btn-default" title="Data"><i class="glyphicon glyphicon-th-list"></i></a>
+   <a href="?data_source=<#DATA_SOURCE#>&view_mode=delete_hisense_device&id=[#ID#]" onClick="return confirm('Are you sure? Please confirm.')" class="btn btn-default" title="Delete"><i class="glyphicon glyphicon-remove"></i></a>
   [#endif ACTION#]
   </div>
  </td>

@@ -132,13 +132,16 @@ function api($params) {
 function admin(&$out) {
  $this->getConfig();
  if (!gg('cycle_hisense_tvRun')) {
-   setGlobal('cycle_hisense_tvRun',1);
+    $out['CYCLERUN'] = 0;
  }
- if ((time() - gg('cycle_hisense_tvRun')) < 60 ) {
-   $out['CYCLERUN'] = 1;
- } else {
-   $out['CYCLERUN'] = 0;
- } 
+ else 
+ {
+    if ((time() - gg('cycle_hisense_tvRun')) < 60 )
+        $out['CYCLERUN'] = 1;
+    else
+        $out['CYCLERUN'] = 0;
+ }
+
  $out['API_URL']=$this->config['API_URL'];
  if (!$out['API_URL']) {
   $out['API_URL']='http://';
@@ -307,6 +310,7 @@ function usual(&$out) {
               else if ($new == 'hdmi2') $this->sendCommand($device['IP'],'/remoteapp/tv/ui_service/'.$name.'/actions/changesource','{"sourceid" : "5","sourcename" : "HDMI 2"}');
               else if ($new == 'youtube') $this->sendCommand($device['IP'],'/remoteapp/tv/ui_service/'.$name.'/actions/launchapp','{"name" : "YouTube","urlType" : 37,"storeType" : 0,"url" : "youtube"}');
               else if ($new == 'netflix') $this->sendCommand($device['IP'],'/remoteapp/tv/ui_service/'.$name.'/actions/launchapp','{"name" : "Netflix","urlType" : 37,"storeType" : 0,"url" : "netflix"}');
+              else if ($new == 'okko') $this->sendCommand($device['IP'],'/remoteapp/tv/ui_service/'.$name.'/actions/launchapp','{"name" : "okko","urlType" : 37,"storeType" : 0,"url" : "http://hs.okko.tv"}');
               else DebMes("Unknown source - ".$new, 'hisense_tv');
             
             $properties[$i]["UPDATED"] = date('Y-m-d H:i:s');

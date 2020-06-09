@@ -25,6 +25,8 @@
    $total=count($res);
    for($i=0;$i<$total;$i++) {
     // some action for every record if required
+    $state = SQLSelectOne("SELECT * FROM hisense_device_data WHERE TITLE='state' AND DEVICE_ID=".$res[$i]['ID']);
+    $res[$i]['STATE'] = $state["VALUE"];
    }
    $out['RESULT']=$res;
   }
